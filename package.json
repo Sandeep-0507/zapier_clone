@@ -1,0 +1,46 @@
+{
+  "name": "zapier-clone",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+
+    "dev:api": "pnpm --filter @zapier-clone/app-api dev",
+    "dev:hooks": "pnpm --filter @zapier-clone/hooks-api dev",
+    "dev:relay": "pnpm --filter @zapier-clone/relay dev",
+    "dev:worker": "pnpm --filter @zapier-clone/worker dev",
+    "dev:web": "pnpm --filter @zapier-clone/web dev",
+
+    "db:migrate": "pnpm --filter @zapier-clone/db db:migrate",
+    "db:seed": "pnpm --filter @zapier-clone/db db:seed",
+    "db:reset": "pnpm --filter @zapier-clone/db db:reset",
+    "db:studio": "pnpm --filter @zapier-clone/db db:studio",
+    "db:setup": "pnpm db:migrate && pnpm db:seed",
+
+    "infra:up": "docker compose up -d postgres redis kafka",
+    "infra:down": "docker compose down",
+    "infra:status": "docker compose ps",
+    "infra:logs": "docker compose logs -f postgres redis kafka",
+
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.5",
+    "prettier": "^3.2.5",
+    "@types/node": "^20.12.0"
+  },
+  "packageManager": "pnpm@9.1.0"
+}
