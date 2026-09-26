@@ -117,7 +117,7 @@ jobs:
           POSTGRES_DB: zapier_clone_ci
         ports: ["5432:5432"]
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U postgres -d zapier_clone_ci"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -167,7 +167,7 @@ jobs:
           REDIS_URL: redis://localhost:6379
           JWT_SECRET: ci-test-jwt-secret-32-chars-minimum
           ENCRYPTION_KEY: "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
-          PORT: 3001
+          APP_API_PORT: 3001
           NODE_ENV: test
 
       - name: Wait for app-api
